@@ -152,6 +152,10 @@ body.shadow::after {
   z-index: 1;
 }
 
+body.lock {
+  overflow: hidden;
+}
+
 .container {
   max-width: 1300px;
   margin: 0 auto;
@@ -182,6 +186,10 @@ body.shadow::after {
 
 .header.scrolled {
   background-color: rgba(0, 0, 0, 0.7137254902);
+}
+
+.header.scrolled .header-bottom {
+  display: none;
 }
 
 .header-top {
@@ -951,7 +959,8 @@ body.shadow::after {
       -ms-flex-align: start;
           align-items: start;
   padding: 16px;
-  background-image: url("../img/services/bg.svg");
+  background-color: #fff;
+  background-image: url("../img/services/Untitled-1.svg");
   background-repeat: no-repeat;
   background-position: right bottom;
 }
@@ -967,12 +976,35 @@ body.shadow::after {
 }
 
 .services__item:hover {
-  background-color: #f0f0f0;
-  background-image: url("../img/services/bg-white.svg");
+  background-color: black;
+  background-image: url("../img/services/vector-2.png");
 }
 
 .services__item:hover .services__img {
   background-color: #f0f0f0;
+}
+
+.services__item:hover p {
+  color: white;
+}
+
+.services__item:nth-child(12n+2):hover,
+.services__item:nth-child(12n+4):hover,
+.services__item:nth-child(12n+6):hover,
+.services__item:nth-child(12n+7):hover,
+.services__item:nth-child(12n+9):hover,
+.services__item:nth-child(12n+11):hover {
+  background-color: white;
+  background-image: url("../img/services/Untitled-1.svg");
+}
+
+.services__item:nth-child(12n+2):hover p,
+.services__item:nth-child(12n+4):hover p,
+.services__item:nth-child(12n+6):hover p,
+.services__item:nth-child(12n+7):hover p,
+.services__item:nth-child(12n+9):hover p,
+.services__item:nth-child(12n+11):hover p {
+  color: black;
 }
 
 .services__img {
@@ -1295,8 +1327,18 @@ body.shadow::after {
 
 .promotion #item1 {
   background-image: url("../img/promotion/1.png");
+  background-color: #000;
   background-position: bottom right;
   background-repeat: no-repeat;
+}
+
+.promotion #item1 p {
+  color: #fff;
+}
+
+.promotion #item1 button {
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 .promotion #item2 {
@@ -1324,13 +1366,31 @@ body.shadow::after {
 }
 
 .promotion #item4 {
-  background: radial-gradient(52.25% 105.24% at 78.13% 69.52%, #dedede 19.37%, #ffffff 29.95%, #dedede 51.7%, #dedede 63.76%);
+  background-color: #fff;
+}
+
+.promotion #item4 p {
+  color: #000;
+}
+
+.promotion #item4 button {
+  color: #000;
 }
 
 .promotion #item5 {
   background-image: url("../img/promotion/1.png");
+  background-color: #000;
   background-position: bottom right;
   background-repeat: no-repeat;
+}
+
+.promotion #item5 p {
+  color: #fff;
+}
+
+.promotion #item5 button {
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 .promotion__text {
@@ -2055,17 +2115,20 @@ body.shadow::after {
 }
 
 .advantages__item:last-child,
-.advantages__item:first-child {
+.advantages__item:first-child,
+.advantages__item:nth-child(5) {
   background-color: #232323;
 }
 
 .advantages__item:last-child p,
-.advantages__item:first-child p {
+.advantages__item:first-child p,
+.advantages__item:nth-child(5) p {
   color: #fff;
 }
 
 .advantages__item:last-child span,
-.advantages__item:first-child span {
+.advantages__item:first-child span,
+.advantages__item:nth-child(5) span {
   color: #fff;
 }
 
@@ -2747,9 +2810,7 @@ body.shadow::after {
   }
 
   .header-logo {
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
+    display: none;
   }
 
   .header-logo img {
@@ -2759,10 +2820,10 @@ body.shadow::after {
   }
 
   .header-contact {
-    -webkit-box-ordinal-group: 4;
-        -ms-flex-order: 3;
-            order: 3;
-    width: 100%;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    width: auto;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -2777,6 +2838,23 @@ body.shadow::after {
   .header-contact__img {
     width: 18px;
     height: 18px;
+  }
+
+  .header-contact__tell a span {
+    font-size: 12px;
+  }
+
+  .header-contact__tell p {
+    font-size: 9px;
+  }
+
+  .header-contact {
+    gap: 8px;
+  }
+
+  .header-btn {
+    width: 25px;
+    height: 25px;
   }
 
   .header-menu.open {

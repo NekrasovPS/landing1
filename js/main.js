@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const servicesItems = document.querySelector(".services__items");
   const tabs = document.querySelectorAll(".price__tab");
   const contents = document.querySelectorAll("[data-tab-content]");
-  const openBtns = document.querySelectorAll(".open-form-btn");
   const modal = document.querySelector(".feedback-modal");
   const promotionWrapper = document.querySelector(
     ".promotionSwiper .swiper-wrapper"
@@ -23,15 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let repairSwiper = initRepairSwiper();
   let promotionSwiper;
 
+  // Слайдеры
   function initRepairSwiper() {
     return new Swiper(".repair-slider", {
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      pagination: {
-        el: ".swiper-pagination",
-      },
+      pagination: { el: ".swiper-pagination" },
     });
   }
 
@@ -41,10 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       slidesPerView: 2,
       spaceBetween: 16,
       centeredSlides: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
+      pagination: { el: ".swiper-pagination", clickable: true },
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -84,10 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Скролл шапки
   window.addEventListener("scroll", () => {
     header.classList.toggle("scrolled", window.scrollY > 0);
   });
 
+  // Меню
   openMenu?.addEventListener("click", () => {
     menu.classList.add("open");
     body.classList.add("shadow");
@@ -98,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.remove("shadow");
   });
 
+  // "Показать все" для ремонта
   btnToggle?.addEventListener("click", () => {
     expanded = !expanded;
     if (expanded) {
@@ -111,12 +109,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Услуги "показать все"
   servicesOpen?.addEventListener("click", () => {
     service = !service;
     servicesItems.classList.toggle("service", service);
     servicesOpen.textContent = service ? "Скрыть" : "Показать все";
   });
 
+  // Слайдеры
   new Swiper(".aboutSwiper", {
     pagination: { el: ".swiper-pagination", type: "fraction" },
     navigation: {
@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  // Табы
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const target = tab.dataset.tab;
@@ -152,20 +153,27 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-
   tabs[0]?.click();
-  window.addEventListener("resize", handleResize);
-  handleResize();
 
-  openBtns.forEach((btn) => {
-    btn.addEventListener("click", () => modal.classList.add("active"));
+  // Обработка модалки через делегирование (главная правка)
+  document.addEventListener("click", (e) => {
+    const button = e.target.closest(".open-form-btn");
+    if (button) {
+      modal?.classList.add("active");
+      body.classList.add("lock");
+    }
+    if (modal && e.target === modal) {
+      modal.classList.remove("active");
+      body.classList.remove("lock");
+    }
   });
 
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) modal.classList.remove("active");
-  });
-
+  // Маска
   if (window.jQuery) {
     $(".phone").mask("+7(999) 999-99-99");
   }
+
+  // Resize
+  window.addEventListener("resize", handleResize);
+  handleResize();
 });
